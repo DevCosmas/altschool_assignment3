@@ -1,0 +1,30 @@
+const { userModel } = require('./../models/user')
+const jwt = require('jsonwebtoken')
+
+// SIGNING UP USERS
+const signUp = async (req, res) => {
+    const body = req.body;
+    try {
+        const user = await userModel.create(body);
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRATION })
+
+        if (user) res.status(201).json({ result: "SUCCESS", message: 'You have succesfully signed_up ', token, userProfile: user })
+
+    } catch (error) {
+        res.status(400).json({ result: "FAIL", message: "bad request. try again later", error })
+    }
+}
+
+const logIn= async (req,res)=>{
+    const {email, password}= req.body;
+    // 1) check if there is any user with the email
+    const user= await userModel.findOne({email}).select('+password')
+    console.log(user)
+    // 2) if there is user , compare password
+  const correctPassword= await user.comparePassword(password,user.password)
+  if(correctPassword){ res.status(200).json({result:"SUCCESS", message:"You are successfully logged in"})}
+//   res.status(200).json({result:"SUCCESS", message:"You are successfully logged in"})
+    // 3) send jwt token
+
+}
+module.exports = { signUp, logIn }
