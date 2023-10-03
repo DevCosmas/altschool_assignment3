@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt= require('bcryptjs')
+const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
@@ -19,7 +19,7 @@ const userSchema = new Schema({
         required: [true, 'user must have a password'],
         min: [6, 'password should not be less than 6 characters'],
         trim: true,
-        select:false
+        select: false
     },
     phone: {
         type: String,
@@ -57,9 +57,9 @@ userSchema.pre('save', async function (next) {
 
     this.password = await bcrypt.hash(this.password, 12)
 })
-userSchema.methods.comparePassword= async function(candidatePassword,userPassword){
-    return await bcrypt.compare(candidatePassword,userPassword)
-    
+userSchema.methods.comparePassword = async function (candidatePassword, userPassword) {
+    return await bcrypt.compare(candidatePassword, userPassword)
+
 }
 const userModel = mongoose.model("USER", userSchema)
 
