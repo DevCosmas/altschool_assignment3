@@ -5,7 +5,7 @@ const isAuthenticated = async (req, res, next) => {
     try {
         const auth = req.headers.authorization
         if (!auth) {
-            res.status(401).json({ message: 'user is not authenticated, kindly login/ sign up' })
+            res.status(401).json({ message: 'kindly login/ sign up' })
         }
         const token = auth.split(' ')[1];
         const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
@@ -15,18 +15,23 @@ const isAuthenticated = async (req, res, next) => {
 
         if (user && decodedToken.iat < time)
             req.user = user
-         return next()
+        return next()
     } catch (error) {
-        res.status(401).json({message:"authentication fails. kindly login or sign up", error})
+        return error
+
     }
 }
 
 const restrictedTo = (role) => {
-    return (req, res, next) => {
-        if (!role.includes(req.user.role)) {
-            res.status(401).json({ message: 'access denied. you are not authorised to use this resources' })
+    try {
+        return (req, res, next) => {
+            if (!role.includes(req.user.role)) {
+                res.status(401).json({ message: 'access denied. you are not authorised to use this resources' })
+            }
+            next()
         }
-        next()
+    } catch (error) {
+        res.status(500).json({ result: "FAIL", message: "an error has occured", error })
     }
 
 }
