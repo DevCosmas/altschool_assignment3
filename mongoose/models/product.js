@@ -27,6 +27,10 @@ const productSchema = new Schema({
         type: String,
         required: [true, 'A product must have a discription']
     },
+    category: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'category'
+    },
     created_at: {
         type: Date,
         required: true,
@@ -34,4 +38,4 @@ const productSchema = new Schema({
     }
 })
 const productModel = mongoose.model("PRODUCTS", productSchema)
-module.exports = {productModel}
+module.exports = { productModel }

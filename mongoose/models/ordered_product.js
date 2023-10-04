@@ -12,5 +12,5 @@ const orderedProductSchema = new Schema({
     }
 })
 
-const orderedProduct = mongoose.model('orderedProduct', orderedProductSchema)
+const orderedProduct = mongoose.model('dProdordereuct', orderedProductSchema)
 module.exports = { orderedProduct }

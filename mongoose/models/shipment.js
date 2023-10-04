@@ -6,6 +6,9 @@ const shipmentSchema= new Schema({
         type:mongoose.Schema.ObjectId,
         required:true,
         ref:'order'
+    },
+    deliveryDate:{
+        type:Date
     }
 })
 

@@ -6,10 +6,6 @@ const paymentSchema= new Schema({
     required:true,
     ref:'order'
 
-   } ,
-   user_id:{
-    type:mongoose.Schema.ObjectId,
-    ref:'USER'
    },
    paymentDate:{
     type:Date
