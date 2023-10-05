@@ -7,10 +7,18 @@ const jwtToken = (payload) => {
 }
 // SIGNING UP USERS
 const signUp = async (req, res) => {
-    const body = req.body;
+
     try {
+        const body = {
+            name: req.body.name,
+            password: req.body.password,
+            email: req.body.email,
+            address: req.body.address,
+            gender: req.body.gender,
+            phone: req.body.phone
+        };
         const user = await userModel.create(body);
-        const token = await jwtToken(user._id)
+        const token = await jwtToken(user._id);
         if (user) res.status(201).json({ result: "SUCCESS", message: 'You have succesfully signed_up ', token, userProfile: user })
 
     } catch (error) {
