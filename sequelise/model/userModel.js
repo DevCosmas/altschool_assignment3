@@ -1,4 +1,5 @@
 const {db} = require('./../config')
+const bcrypt= require(bcrypt)
 const sequelize = db.sequelize
 const DataTypes = db.DataTypes
 const userModel = sequelize.define('users', {
@@ -43,6 +44,9 @@ const userModel = sequelize.define('users', {
         defaultValue: 'user'
     }
 
+})
+userModel.beforeCreate(async()=>{
+     const hashedPassword= await bcrypt
 })
 
 module.exports = { userModel }
