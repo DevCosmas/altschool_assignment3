@@ -2,12 +2,13 @@ const express = require('express');
 const { db } = require('./config')
 const userRouter = require('./routes/userRoute')
 const productRouter= require('./routes/productRoute')
-// const productController = require('./controller/productController')
 require('dotenv').config()
 const port = process.PORT || 3000;
 
 const app = express()
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
 db.sequelize
 
 app.use('/api', userRouter)

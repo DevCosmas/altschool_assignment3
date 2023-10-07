@@ -11,8 +11,8 @@ async function getAllProduct(req, res) {
 
 async function getOneProduct(req, res) {
     try {
-        const product = await productModel.findByPk(req.params.id)
-        if (product) res.status(200).json({ result: 'SUCCESS', size: product.length, products})
+        const product = await productModel.findByPk(parseInt(req.params.id))
+        res.status(200).json({ result: 'SUCCESS', size: product.length, product })
     } catch (err) {
         res.status(400).json({ result: 'fail', message: 'something went wrong', err })
     }
@@ -31,7 +31,7 @@ async function createProduct(req, res) {
 async function updateProduct(req, res) {
     try {
         const toBeUpdated = req.body
-        const updated = await productModel.update(toBeUpdated, { where: { id: req.params.id } })
+        const updated = await productModel.update(toBeUpdated, { where: { id: parseInt(req.params.id) } })
         if (!updated) {
             return res.status(404).json({ message: 'try again' })
         }
@@ -43,7 +43,7 @@ async function updateProduct(req, res) {
 
 async function deleteProduct(req, res) {
     try {
-        const itemToDelete = await productModel.destroy({ where: { id: req.params.id } })
+        const itemToDelete = await productModel.destroy({ where: { id: parseInt(req.params.id) } })
         if (!itemToDelete) {
             return res.status(404).json({ message: 'cannot delete not found item' })
         }
