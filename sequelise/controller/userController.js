@@ -14,6 +14,7 @@ async function signUp(req, res) {
             address: req.body.address,
             gender: req.body.gender,
             phone: req.body.phone
+
         };
         const newUser = await userModel.create(body);
         const token = await jwtToken(newUser.id);
@@ -23,8 +24,29 @@ async function signUp(req, res) {
     }
 }
 
+const logIn = async (req, res) => {
+
+    const { email, password } = req.body;
+    // 1) check if there is any user with the email
+    const user = await userModel.findOne({where:{email: email} })
+
+    // 2) if there is user , compare password
+    const correctPassword = await user.comparePassword(password, user.password)
+
+    // 3) send jwt token
+    if (!correctPassword) {
+        res.status(401).json({ result: "FAIL", message: "invalid password or email" })
+    }
+    else {
+        const token = await jwtToken(user.id)
+        res.status(200).json({ result: "SUCCESS", message: "You are successfully logged in", token })
+
+    }
+}
+
 
 module.exports = {
-    signUp
-    
+    signUp,
+    logIn
+
 }

@@ -16,15 +16,13 @@ const userModel = sequelize.define('users', {
     },
     email: {
         type: DataTypes.STRING,
-        // defaultValue:'johndoe@example.co
         allowNull:false,
         unique: true
     },
     password: {
         type: DataTypes.STRING,
         unique: true,
-        // // defaultValue:'test1234',
-        // allowNull: true
+       
     },
     phone: {
         type: DataTypes.STRING,
@@ -48,5 +46,8 @@ const userModel = sequelize.define('users', {
 userModel.beforeCreate(async(user)=>{
     user.password = await bcrypt.hash(user.password, 12)
 })
+userModel.prototype.comparePassword = async function (candidatePassword, userPassword) {
+    return await bcrypt.compare(candidatePassword, userPassword)
 
+}
 module.exports = { userModel }

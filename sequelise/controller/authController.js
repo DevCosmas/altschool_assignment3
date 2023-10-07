@@ -17,9 +17,23 @@ const isAuthenticated = async (req, res, next) => {
             req.user = user
         return next()
     } catch (error) {
-        return error
+        return res.status(500).json({message:'something is wrong', error})
 
     }
 }
 
-module.exports = { isAuthenticated }
+const restrictedTo = (role) => {
+    try {
+        return (req, res, next) => {
+            if (!role.includes(req.user.role)) {
+                res.status(401).json({ message: 'access denied. you are not authorised to use this resources' })
+            }
+            next()
+        }
+    } catch (error) {
+        res.status(500).json({  message: "something is wrong", error })
+    }
+
+}
+
+module.exports = { isAuthenticated, restrictedTo}
