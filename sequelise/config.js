@@ -25,7 +25,7 @@ db.Sequelize = Sequelize
 db.DataTypes = DataTypes
 
 
-db.sequelize.sync({ force: true })
+db.sequelize.sync({ force: false})
   .then(() => {
     console.log('Database synchronized');
   })
