@@ -1,5 +1,5 @@
 const mysql2 = require('mysql2');
-const { Sequelize, Datatypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 require('dotenv').config()
 
 const database = process.env.MYSQL_DB_NAME;
@@ -22,10 +22,10 @@ sequelize.authenticate()
 const db = {};
 db.sequelize = sequelize
 db.Sequelize = Sequelize
-db.Datatypes = Datatypes
+db.DataTypes = DataTypes
 
 
-db.sequelize.sync()
+db.sequelize.sync({ force: true })
   .then(() => {
     console.log('Database synchronized');
   })

@@ -1,42 +1,45 @@
-const db = require('./../config')
+const {db} = require('./../config')
 const sequelize = db.sequelize
-const Datatypes = db.Datatypes
+const DataTypes = db.DataTypes
 const userModel = sequelize.define('users', {
     id: {
-        type: Datatypes.INTEGER,
-        primayKey: true,
-        unique: true,
-        allowNull: false
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+       
     },
+    
     name: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     email: {
-        type: Datatypes.STRING,
-        allowNull: false,
+        type: DataTypes.STRING,
+        // defaultValue:'johndoe@example.co
+        allowNull:false,
         unique: true
     },
     password: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         unique: true,
-        allowNull: false
+        // // defaultValue:'test1234',
+        // allowNull: true
     },
     phone: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         unique: true,
-        allowNull: false
+
     },
     gender: {
-        type: Datatypes.ENUM['male', 'female'],
-        allowNull: false
+        type: DataTypes.ENUM('male', 'female'),
+        allowNull: false,
     },
     address: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     role: {
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         defaultValue: 'user'
     }
 

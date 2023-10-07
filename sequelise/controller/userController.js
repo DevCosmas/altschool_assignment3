@@ -10,6 +10,12 @@ async function signUp(req, res) {
     }
 }
 
+async function getUser(req,res){
+    const user= await userModel.findAll()
+    if (user) res.status(201).json({ result: "success", message: 'you have succefully signed up', user })
+}
+
 module.exports= {
-    signUp
+    signUp,
+    getUser
 }
