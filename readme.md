@@ -16,28 +16,31 @@ mysql
  Using the context from the previous assignment, Company X wants us to start creating our codebase using our ERD design to setup migrations, seeders and authentication with JWT.
 
 ## What you need to do:
-  <ol> 
+  
 <li>Using a clean repo, have two branches, one for SQL implementation and another for NOSQL implementation
-<li/>
-<li>Using Sequelize, <li/>
-    a.create the necessary migrations
-    b.seed a user for the admin role and 10 or more items into your database
-    c.create a route for a user to signup, login and view the list of items
+ 
+1.Using Sequelize,
+  * create the necessary migrations
+  * seed a user for the admin role and 10 or more items into your database
+  * create a route for a user to signup, login and view the list of items
+    
+   
+   
 
-<li>Using Mongoose<li/>
-     a.create the necessary schemas and models. 
-     b.Seed an admin user and 10 or more items into your database
-     c.Create a route for a user to signup, login and view the list of items
+2. Using Mongoose
+    * create the necessary schemas and models. 
+    * Seed an admin user and 10 or more items into your database
+    * Create a route for a user to signup, login and view the list of items
+     
 
-<li>Admin users should be able to create, update and delete items<li/>
-<ol/>
+<li>Admin users should be able to create, update and delete items
 
-**Things to note**:
-<li>In both implementations, the route to get the list of items must be authenticated<li/>
-<li>Use JWT for authentication<li/>
-<li>Ensure your JWT expires after 1 hour<li/>
-<li>Add a .env.example file<li/>
-<li>Ensure password is encrypted<li/>
+ **Things to note**:
+<li> In both implementations, the route to get the list of items must be authenticated
+<li>Use JWT for authentication
+<li>Ensure your JWT expires after 1 hour
+<li>Add a .env.example file
+<li>Ensure password is encrypted
 
 # HOW TO RUN PROJECT 
 * Clone The repo and cd into your base folder
