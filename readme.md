@@ -10,7 +10,7 @@ Docs link :https://documenter.getpostman.com/view/28599121/2s9YJgTfTR
 Nodejs
 # DATABASES
  * mongodb
- * mysql
+
 
 ## Context
  Using the context from the previous assignment, Company X wants us to start creating our codebase using our ERD design to setup migrations, seeders and authentication with JWT.
