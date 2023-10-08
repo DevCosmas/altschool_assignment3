@@ -1,4 +1,4 @@
-# AltSchoolNodeJS Assignment Migrations, Seeders and Authentication
+# AltSchool NodeJS Assignment Migrations, Seeders and Authentication
 
 
 
@@ -9,10 +9,10 @@ Docs link :https://documenter.getpostman.com/view/28599121/2s9YJgTfTR
 # TECH STACK
 Nodejs
 # DATABASES
-mongodb
-mysql
+ * mongodb
+ * mysql
 
-**Context**
+## Context
  Using the context from the previous assignment, Company X wants us to start creating our codebase using our ERD design to setup migrations, seeders and authentication with JWT.
 
 ## What you need to do:
